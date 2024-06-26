@@ -6,6 +6,7 @@ function Login() {
     <div>
     <Form route="api/token/" method="login" />
     
+    <a className="form-a" href="/register">don't have an account</a>
     </div>
 )}
 

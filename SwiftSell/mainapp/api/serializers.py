@@ -2,7 +2,6 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from ..models import *
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model, authenticate
 
 class PostSerializer(ModelSerializer):
     seller = serializers.SerializerMethodField()
@@ -30,12 +29,17 @@ class CartProductsSerializer(serializers.ModelSerializer):
 
     def get_products(self, cart_item):
         product = cart_item.products
-        return{
-            'name': product.name,
-            'photo': product.photo,
-            'price':product.price,
-            'id': product.id
-        }
+        if product:
+            return{
+                    
+                    'name': product.name,
+                    'photo': product.photo,
+                    'price':product.price,
+                    'id': product.id
+                }
+        else:
+            return {}
+
 
     class Meta:
         model = cart_item
@@ -66,3 +70,27 @@ class AddAdsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ads_item
         fields = ['id', 'products']
+class BrandsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = brand_account
+        fields = ['brand_name', 'country', 'author', 'username']
+        extra_kwargs = {"author": {"read_only": True } }
+class OrderSerializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+    def get_product(self, order):
+        product = order.product
+
+        if product:
+                return{
+                        
+                        'name': product.name,
+                        'photo': product.photo,
+                        'price':product.price,
+                        'id': product.id,
+                        
+                    }
+        else:
+            return {}
+    class Meta:
+        model = order
+        fields = ['buyer', 'seller', 'product', 'address', 'quantity', 'name']

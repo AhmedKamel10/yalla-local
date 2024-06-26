@@ -2,7 +2,6 @@ import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/forms.css"
 import LoadingIndicator from "./LoadingIndicator";
 
 function Form({ route, method }) {
@@ -19,10 +18,11 @@ function Form({ route, method }) {
 
         try {
             const res = await api.post(route, { username, password })
+            console.log(username, password)
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                navigate("/all")
+                navigate("/")
             } else {
                 navigate("/login")
             }
@@ -54,8 +54,6 @@ function Form({ route, method }) {
             <button className="form-button" type="submit">
                 {name}
             </button>
-            <p>Dont have an account?</p>
-            <a href="/register"> register </a>
         </form>
     );
 }

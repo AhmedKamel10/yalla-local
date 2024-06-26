@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/PerotectedRoute"
 import Ads from './pages/AdsPage'
 import Profile from './pages/Profile'
 import Landing from './pages/landing'
+import Orders from "./pages/orders";
 function Logout(){
     return <Navigate to="/login"/>
 
@@ -39,6 +40,8 @@ function App(){
             <Route exact path='/product/:id' element={<ProtectedRoute><ProductPage></ProductPage> </ProtectedRoute>}/>
             <Route exact path='/sell' element={<ProtectedRoute><ProductForm /> </ProtectedRoute>}/>
             <Route exact path='/ads' element={<ProtectedRoute> <Ads></Ads> </ProtectedRoute>}/>
+            <Route exact path='/orders' element={<ProtectedRoute> <Orders></Orders> </ProtectedRoute>}/>
+
             <Route exact path='/profile' element={<ProtectedRoute> <Profile></Profile> </ProtectedRoute>}/>
             <Route exact path="/" element={<Landing></Landing>}></Route>
         </Routes>

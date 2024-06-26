@@ -1,0 +1,166 @@
+body {
+  background-color: #e9eded;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+.centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+.big-image img {
+  width: 100%;
+  height: auto;
+  
+}
+.big-image img :hover{
+  filter: brightness(70%);
+  
+}
+.big-image {
+  transition: filter 0.3s ease;
+  width: 85%;
+}
+h1{
+  font-weight: 600;
+}
+
+.small-images {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin-top: 0px;
+  
+}
+.small-image:hover{
+  filter: brightness(70%);
+  
+}
+.small-image {
+  transition: filter 0.3s ease; /* Adjust the duration and timing function as needed */
+}
+
+.small-image {
+  width: 49%;
+  height: auto;
+}
+
+.horizontal-list {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.horizontal-image {
+  width: 500px;
+  border: solid black;
+  height: auto;
+  margin-right: 10px;
+}
+
+.horizontal-image:last-child {
+  margin-right: 0;
+}
+
+/* Optional: To hide scrollbar */
+.horizontal-list::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+}
+.shop_button{
+  position: relative ; top: -570px; left: 43%;
+  background-color: transparent;
+  border: 3px black solid;
+  font-size: 30px;
+  font-weight: 500;
+}
+/* Default styles */
+
+/* Add these styles to your existing CSS */
+
+.horizontal-list {
+  display: flex;
+  overflow-x: hidden; /* Hide scrollbar */
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  transition:0.3s ;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 270%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: black;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.scroll-button.left {
+  left: 0;
+}
+
+.scroll-button.right {
+  right: 0;
+}
+.mid-button{
+  height: 60px;
+  background-color: transparent;
+  margin-top: 400px;
+  margin-right: 300px;
+  
+}
+
+@media (max-width: 768px) {
+  /* Adjust the styles for smaller screens */
+  .gallery {
+    margin: 10px;
+  }
+  
+  .big-image {
+    width: 95%;
+  }
+  
+  .small-images {
+    width: 90%;
+  }
+  
+  .horizontal-image {
+    width: 150px;
+  }
+  
+  .shop_button {
+    position: static;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .centered {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+}
+
