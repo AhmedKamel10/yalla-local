@@ -128,7 +128,9 @@ body {
   color: #fff;
   padding: 20px 0;
 }
-
+.shop_button{
+  margin-top: 100px;
+}
 /* Media Queries */
 @media (max-width: 768px) {
   .hero h1 {

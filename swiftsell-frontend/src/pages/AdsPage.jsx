@@ -42,28 +42,35 @@ function delete_from_ads(productID){
 }
 function AdstItemInfo({p}){
   return (
-    <div>      
+    <div className='cart-item'>      
 
       
       <div>
-      <div> <Link to={`/product/${p.products.id}`}> <img className='img1' src={p.products.photo} ></img></Link></div>
+      <div> <Link to={`/product/${p.products.id}`}> <img className='img3' src={p.products.photo} ></img></Link></div>
       </div>
+      <div>
       <div>{p.products.name}</div>
-      <div>{p.products.price}EGP</div>
+      <div className="price">{p.products.price}EGP</div>
+      <p className='description'>{p.products.description}</p>
       <button onClick={()=>{delete_from_ads(p.products.id)
     
       window.location.reload()
       }}> delete ad</button>
+      </div>
+
     </div>
   );
 
 }
     return(
       <div>
+        
       <Navigation_bar></Navigation_bar>
-      <div className='grid-container'>
+      <h1 className='cart_header'>Your ads </h1>
+
+      <div className='cart-container'>
       {data.map((item) => (
-           <div className='grid-item'><AdstItemInfo p={item}></AdstItemInfo></div>
+           <div><AdstItemInfo p={item}></AdstItemInfo></div>
   
         ))}
       </div>

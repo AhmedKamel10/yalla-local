@@ -8,7 +8,9 @@
 }
 body{
   background-color: #e9eded;
+  zoom: 100%;
 }
+
 
 .main-navbar {
   border-bottom: 1px solid #000000;
@@ -19,23 +21,131 @@ textarea{
   width:88%;
 
 }
-.popup-content {
+.cart-container {
+  width: 60%;
+  margin: auto;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #000;
+  padding: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.img3 {
+  width: 200px;
+  height: auto;
+  margin-right: 20px;
+  border: none;
+}
+
+
+.cart-details {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border-radius: 0px;
-  
-  width: 700px;
+  flex-grow: 1;
+  border: none;
+}
+
+.cart-details .price {
+  font-weight: bold;
+}
+
+.cart-details .description {
+  margin-top: 10px;
+  color: #555;
+}
+.shop_button{
+  margin-top: 100px;
+}
+.popup-content {
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
 }
 
 .popup-input {
   margin: 10px 0;
-  padding: 10px;
+  padding: 8px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #ccc;
 }
 
+.popup-button, .popup-button-close {
+  margin-top: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.cart-button{
+  width:50%;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .img3 {
+    margin: 0 auto 10px;
+    width: 80%;
+  }
+
+  .cart-details {
+    align-items: center;
+    width: 100%;
+  }
+
+  .cart-details .description {
+    text-align: center;
+  }
+}
+
+/* Additional Media Queries for Mobile Devices */
+
+@media (max-width: 480px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img3 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .cart-details {
+    text-align: center;
+  }
+
+  .cart-details .description {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .cart-details .price {
+    font-size: 16px;
+  }
+
+  .popup-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .popup-button, .popup-button-close {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
 
 
 .information-needed{
@@ -111,7 +221,7 @@ textarea{
 }
 
 .img1{
-  width: 299px;
+  width: 300px;
   height: auto;
 }
 
@@ -177,10 +287,7 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.description {
-  font-size: 16px;
-  line-height: 1.5;
-}
+
 
 label {
   display: block;

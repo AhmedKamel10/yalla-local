@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import Navigation_bar from '../components/navbar';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+
 function Cart() {
   const [cartItem, setCartitem] = useState([]);
   const [data, setData] = useState([]);
@@ -14,9 +15,7 @@ function Cart() {
   const [address, setAddress] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [number, setNumber] = useState(false);
-
-
+  const [number, setNumber] = useState('');
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -30,14 +29,13 @@ function Cart() {
           }
         });
         setCartitem(response.data);
-        console.log(response.data)
+        console.log(response.data);
 
       } catch (error) {
         console.error('Error fetching cart items:', error);
       }
     };
 
-  
     const fetchdata = () => {
       api
         .get("/api/products/")
@@ -54,50 +52,51 @@ function Cart() {
   }, []);
 
   function delete_from_cart(productID) {
-    api.post('/api/cart_products/delete_from_cart/', { 'products': productID })
+    api.post('/api/cart_products/delete_from_cart/', { 'products': productID });
   }
+
   const handleclick = (e) => {
     setShowPopup(true);
-    setSelectedProduct(e.target.value)
-
-
+    setSelectedProduct(e.target.value);
   };
+
   const closePopup = () => {
     setShowPopup(false);
     setName('');
     setAddress('');
+    setNumber('');
   };
+
   const handleSubmit = () => {
     console.log("Input 1:", name);
     console.log("Input 2:", address);
-    api.post('/api/orders/add_to_orders/' , {'product':selectedProduct ,'name': name, 'address': address, 'number': number})
-
-
+    api.post('/api/orders/add_to_orders/', { 'product': selectedProduct, 'name': name, 'address': address, 'number': number });
   };
 
   function CartItemInfo({ p }) {
     if (!p.products) {
       return null;
     }
-    else{
     return (
-      <div>
+      <div className="cart-item">
         <div>
           <Link to={`/product/${p.products.id}`}>
-            <img className='img1' src={p.products.photo} />
+            <img className='img3' src={p.products.photo} alt={p.products.name} />
           </Link>
         </div>
-        <div>{p.products.name}</div>
-        <div>{p.products.price}EGP</div>
-        
-        <button onClick={() => {
-          delete_from_cart(p.products.id);
-          window.location.reload();
-        }}>delete from cart</button>
-        <button value={p.products.id} onClick={handleclick} >Buy now</button>
+        <div className="cart-details">
+          <div>{p.products.name}</div>
+          <div className="price">{p.products.price} EGP</div>
+          <p className='description'>{p.products.description}</p>
+          <button className='cart-button' onClick={() => {
+            delete_from_cart(p.products.id);
+            window.location.reload();
+          }}>Delete from cart</button>
+          <button className='cart-button' value={p.products.id} onClick={handleclick}>Buy now</button>
+        </div>
       </div>
     );
-  }}
+  }
 
   return (
     <div>
@@ -106,14 +105,13 @@ function Cart() {
       <div>
         <h1 className='cart_header'>Your cart</h1>
 
-        <div className='grid-container'>
+        <div className='cart-container'>
           {
             cartItem.map((item) => (
-              cartItem ?(
-              <div key={item.id} className='grid-item'>
+              <div key={item.id}>
                 <CartItemInfo p={item} />
               </div>
-            ):(<div>sdfsdf</div>)))
+            ))
           }
         </div>
       </div>
@@ -123,7 +121,7 @@ function Cart() {
           <div className="popup-content">
             <div>
               <label>
-                username:
+                Username:
                 <input
                   type="text"
                   value={name}
@@ -134,17 +132,17 @@ function Cart() {
             </div>
             <div>
               <label>
-                number of items
+                Number of items:
                 <input
                   type="number"
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
                   className="popup-input"
                 />
-                </label>
-                <label>
-                address:
-                  <input
+              </label>
+              <label>
+                Address:
+                <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}

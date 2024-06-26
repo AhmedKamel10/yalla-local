@@ -35,7 +35,8 @@ class CartProductsSerializer(serializers.ModelSerializer):
                     'name': product.name,
                     'photo': product.photo,
                     'price':product.price,
-                    'id': product.id
+                    'id': product.id,
+                    'description':product.description
                 }
         else:
             return {}
@@ -57,11 +58,15 @@ class AdsProductsSerializer(serializers.ModelSerializer):
     def get_products(self, ads_item):
         product = ads_item.products
         return{
-            'name': product.name,
-            'photo': product.photo,
-            'price':product.price,
-            'id': product.id
-        }
+                        
+                        'name': product.name,
+                        'photo': product.photo,
+                        'price':product.price,
+                        'id': product.id,
+                        'description':product.description
+                        
+                        
+                    }
 
     class Meta:
         model = ads_item
