@@ -14,6 +14,8 @@ function Cart() {
   const [address, setAddress] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [number, setNumber] = useState(false);
+
 
 
   useEffect(() => {
@@ -68,7 +70,7 @@ function Cart() {
   const handleSubmit = () => {
     console.log("Input 1:", name);
     console.log("Input 2:", address);
-    api.post('/api/orders/add_to_orders/' , {'product':selectedProduct ,'name': name, 'address': address})
+    api.post('/api/orders/add_to_orders/' , {'product':selectedProduct ,'name': name, 'address': address, 'number': number})
 
 
   };
@@ -132,8 +134,17 @@ function Cart() {
             </div>
             <div>
               <label>
-                address:
+                number of items
                 <input
+                  type="number"
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
+                  className="popup-input"
+                />
+                </label>
+                <label>
+                address:
+                  <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}

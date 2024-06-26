@@ -15,9 +15,9 @@ body{
   width: 100%;
 }
 textarea{
-  margin-left: 25%;
-  width: 700px;
-  margin-top: 50px;
+ 
+  width:88%;
+
 }
 .popup-content {
   display: flex;
@@ -98,6 +98,7 @@ textarea{
   color: #000;
   font-size: 15px;
 }
+
 
 .grid-container {
   display: grid;

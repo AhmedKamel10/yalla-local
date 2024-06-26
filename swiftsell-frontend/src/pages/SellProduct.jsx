@@ -11,6 +11,7 @@ const ProductForm = () => {
     const [photo, setPhoto] = useState('');
     const [n, setN] = useState(1); 
     const navigate = useNavigate();
+    const [description, setDescription] = useState('');  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +19,8 @@ const ProductForm = () => {
             const response = await api.post('http://localhost:8000/api/products/', {
                 name,
                 price,
-                photo
+                photo,
+                description
             });
             console.log(response.data);
             addtoads(response.data.id);
@@ -57,6 +59,7 @@ const ProductForm = () => {
                 <form onSubmit={handleSubmit} className="form-container">
                     <h2>Product Information</h2>
                     <input className="form-input" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
+                    <textarea cols={10} rows={5} placeholder='write the product description' name="postContent" onChange={(e)=>{setDescription(e.target.value)}} />       
                     <input className="form-input" type="text" value={photo} onChange={(e) => setPhoto(e.target.value)} placeholder="Photo URL" />
                     <p>Price:</p>
                     <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />

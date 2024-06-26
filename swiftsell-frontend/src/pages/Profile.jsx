@@ -34,13 +34,7 @@ function Profile(){
         <Link to="/sell" className="profile-link">Sell</Link>
         <Link to="/logout" className="profile-link">Logout</Link>
       </div>
-      <div className='profile-header-address'>
-        <h1>Your saved adrress:</h1>
-        <p>169 hadayek el ahram</p>
-        <p>Cairo</p>
-        <p>Egypt</p>
-         
-      </div>
+
     </div>
         <Footer></Footer>
         </div>

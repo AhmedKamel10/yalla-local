@@ -10,7 +10,7 @@ class PostSerializer(ModelSerializer):
         return product.seller.username if product.seller else None
     class Meta:
         model = Product
-        fields = ['id','name', 'photo', 'price', 'seller']
+        fields = ['id','name', 'photo', 'price', 'seller', 'description']
         extra_kwargs = {"password": {"read_only": True} }
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -93,4 +93,4 @@ class OrderSerializer(serializers.ModelSerializer):
             return {}
     class Meta:
         model = order
-        fields = ['buyer', 'seller', 'product', 'address', 'quantity', 'name']
+        fields = ['buyer', 'seller', 'product', 'address', 'quantity', 'name', 'quantity']

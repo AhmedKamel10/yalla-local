@@ -36,7 +36,7 @@ function Orders() {
       <div>{p.address} </div>
       <div>{p.quantity} </div>
       
-      <button onClick={()=> { api.post('/api/orders/delete_from_orders/' , {'product': p.product.id, 'name':p.name} )} }>delivered</button>
+      <button onClick={()=> { api.post('/api/orders/delete_from_orders/' , {'product': p.product.id, 'name':p.name} ) ; window.location.reload();} }>delivered</button>
         </div>
     )}
 

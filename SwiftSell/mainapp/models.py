@@ -7,6 +7,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     photo = models.CharField(max_length=255, null=True)
     seller = models.ForeignKey(User, null=True, default=None, on_delete=models.CASCADE)
+    description=  models.TextField(max_length=255, null=True)
+    number = models.IntegerField(default=1, null=True)
     def __str__(self):
         return self.name
 class user_cart(models.Model):

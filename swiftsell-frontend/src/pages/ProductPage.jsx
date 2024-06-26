@@ -1,8 +1,5 @@
-import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import Navigation_bar from '../components/navbar';
 import Footer from '../components/footer';
-
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import api from '../api'
@@ -36,11 +33,10 @@ function ProductPageInfo({p}){
         <h1>{p.name}</h1>
         <p className="price">{p.price}</p>
         <p className="availability">In Stock</p>
-        <p className="description">Overshirt in rigid cotton denim with a turn-down collar, classic front, a yoke at the back and a gently rounded hem. Regular fit with a patch chest pocket and long sleeves with buttoned cuffs and a sleeve placket.</p>
+        <p className="description">{p.description}</p>
         <button  onClick={()=>{addToCart(p.id)
 
 }}> add to cart</button>
-        <button>Buy Now</button>
         <div className="product-reviews">
           {/* Reviews and ratings can be displayed here */}
         </div>

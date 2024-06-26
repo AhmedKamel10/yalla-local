@@ -130,12 +130,13 @@ class orders(ModelViewSet):
         product_id = request.data.get('product')
         name = request.data.get('name')
         address= request.data.get('address')
+        number= request.data.get('number')
         print(address)
         if product_id is not None:
             product = get_object_or_404(Product, id=product_id)
             try:
                 if not order.objects.filter(seller=product.seller, product=product, buyer=self.request.user, name=name).exists():
-                    order.objects.create(seller=product.seller, product=product, buyer=self.request.user, name=name, address=address)
+                    order.objects.create(seller=product.seller, product=product, buyer=self.request.user, name=name, address=address, quantity=number)
                     print(product.seller)
                     print(self.request.user)
                     return Response({"message": "Order created"}, status=201)
