@@ -24,29 +24,34 @@ function Orders() {
       };
     function OrderInfo({p}){
         return(
-        <div>
+        <div className='cart-item'>
       <p>{p.product.seller}</p>
       <div>
         <Link to={`/product/${p.product.id}`}>
-          <img className='img1' loading="lazy" src={p.product.photo} alt={p.product.name} />
+          <img className='img3' loading="lazy" src={p.product.photo} alt={p.product.name} />
         </Link>
       </div>
-      <div>{p.name}</div>
-      <div>{p.product.price} EGP</div>
-      <div>{p.address} </div>
-      <div>{p.quantity} </div>
+      <div className='cart-details'> 
+      <div className='price'>{p.product.price} EGP</div>
+
+      <div className='price'> buyer name: {p.name}</div>
+      <p className='description'>{p.product.description}</p>
+
+      <div className='address'> address: {p.address} </div>
+      <div> quantity: {p.quantity} </div>
       
-      <button onClick={()=> { api.post('/api/orders/delete_from_orders/' , {'product': p.product.id, 'name':p.name} ) ; window.location.reload();} }>delivered</button>
+      <button className='cart-button' onClick={()=> { api.post('/api/orders/delete_from_orders/' , {'product': p.product.id, 'name':p.name} ) ; window.location.reload();} }>delivered</button>
         </div>
+    </div>
     )}
 
     return (
         <div>
             <Navigation_bar />
-            <h1>this is what you sold. </h1>
-            <div className='grid-container'>
+            <h3 className='cart_header'>this is what you sold. </h3>
+            <div className='cart-container'>
                 {data.map((order, index) => (
-                    <div className='grid-item' key={index}>
+                    <div key={index}>
                         <OrderInfo p={order}></OrderInfo>
 
                     </div>

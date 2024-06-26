@@ -71,6 +71,7 @@ function Cart() {
     console.log("Input 1:", name);
     console.log("Input 2:", address);
     api.post('/api/orders/add_to_orders/', { 'product': selectedProduct, 'name': name, 'address': address, 'number': number });
+    setShowPopup(false);
   };
 
   function CartItemInfo({ p }) {
@@ -103,7 +104,7 @@ function Cart() {
       <Navigation_bar />
 
       <div>
-        <h1 className='cart_header'>Your cart</h1>
+        <h3 className='cart_header'>Shoping Cart</h3>
 
         <div className='cart-container'>
           {

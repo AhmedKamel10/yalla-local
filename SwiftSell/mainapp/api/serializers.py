@@ -92,6 +92,8 @@ class OrderSerializer(serializers.ModelSerializer):
                         'photo': product.photo,
                         'price':product.price,
                         'id': product.id,
+                        'description':product.description
+
                         
                     }
         else:

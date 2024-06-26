@@ -33,7 +33,6 @@ textarea{
   border: 1px solid #000;
   padding: 10px;
   margin-top: 20px;
-  flex-wrap: wrap;
 }
 
 .img3 {
@@ -103,6 +102,8 @@ textarea{
     align-items: center;
     width: 100%;
   }
+
+  
 
   .cart-details .description {
     text-align: center;
@@ -235,7 +236,7 @@ textarea{
 }
 
 .cart_header{
-  margin-left: 45%;
+  margin-left: 42%;
 }
 
 button:hover {
