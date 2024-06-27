@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import Navigation_bar from '../components/navbar';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { Checkmark } from 'react-checkmark'
 
 function Cart() {
   const [cartItem, setCartitem] = useState([]);
@@ -16,7 +17,8 @@ function Cart() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [number, setNumber] = useState('');
-
+  const [isSubmitted, setIsSubmited] = useState(false);
+  const [price, setPrice] = useState();
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -70,14 +72,22 @@ function Cart() {
   const handleSubmit = () => {
     console.log("Input 1:", name);
     console.log("Input 2:", address);
-    api.post('/api/orders/add_to_orders/', { 'product': selectedProduct, 'name': name, 'address': address, 'number': number });
-    setShowPopup(false);
+    api.post('/api/orders/add_to_orders/', { 'product': selectedProduct, 'name': name, 'address': address, 'number': number }).then(
+      response=>{
+          setIsSubmited(true)
+          setShowPopup(true)
+         
+            
+          
+      }
+    )
   };
 
   function CartItemInfo({ p }) {
     if (!p.products) {
       return null;
     }
+    
     return (
       <div className="cart-item">
         <div>
@@ -93,7 +103,8 @@ function Cart() {
             delete_from_cart(p.products.id);
             window.location.reload();
           }}>Delete from cart</button>
-          <button className='cart-button' value={p.products.id} onClick={handleclick}>Buy now</button>
+          <button className='cart-button' value={p.products.id} onClick={()=>{    setShowPopup(true);
+    setSelectedProduct(p.products.id); setPrice(p.products.price)}}>Buy now</button>
         </div>
       </div>
     );
@@ -119,8 +130,20 @@ function Cart() {
       <Footer />
       {showPopup && (
         <Popup open={true} position="right center" onClose={closePopup}>
-          <div className="popup-content">
+          <div className="popup">
+          {isSubmitted ?
+          
+          <div><Checkmark size='128px' />
+          <h3>Name: {name}</h3>         
+          <h3>address: {address}</h3>
+          <h3>price: {price} EGP</h3>
+          <h3>quantity: {number}</h3>
+
+          
+          
+          </div>:   <div className="popup-content">
             <div>
+          
               <label>
                 Username:
                 <input
@@ -153,7 +176,9 @@ function Cart() {
             </div>
             <button onClick={handleSubmit} className="popup-button">Submit</button>
             <button onClick={closePopup} className="popup-button-close">Close</button>
-          </div>
+          </div>}
+        </div>
+        
         </Popup>
       )}
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ShoppingCart } from 'lucide-react';
 
 function CustomNavbar() {
   const navbarStyle = {
@@ -23,7 +24,7 @@ function CustomNavbar() {
             </Nav>
             <Nav>
               <Nav.Link as={Link} to="/cart" className="nav-link">
-                <i className="fa fa-shopping-cart"></i> Cart
+                <i className="fa fa-shopping-cart"></i> <ShoppingCart />
               </Nav.Link>
               <NavDropdown title={<><i className="fa fa-user"></i> Profile</>} id="basic-nav-dropdown">
                 <NavDropdown.Item href="/profile">

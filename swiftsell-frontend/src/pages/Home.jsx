@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import api from '../api';
 import NavigationBar from '../components/navbar';
 import Footer from '../components/footer';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import { Checkmark } from 'react-checkmark'
 
 function Home() {
   const [data, setData] = useState([]);
@@ -11,8 +14,8 @@ function Home() {
   const [brandactiveButton, setBrandactiveButton] = useState('');
   const [brand, setBrand] = useState([]);
   const [searchBrand, setSearchBrand] = useState('');
-  const [darkMode, setDarkMode] = useState(false); // State variable for dark mode
-
+  const [darkMode, setDarkMode] = useState(false); 
+  const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,7 +49,12 @@ function Home() {
   );
 
   const addToCart = (productId) => {
-    api.post('/api/cart_products/add_to_cart/', { products: productId });
+    try{
+      api.post('/api/cart_products/add_to_cart/', { products: productId });
+      setShowPopup(true)}
+    catch{
+      setShowPopup(false)
+    }
   };
 
   const handleKeypress = (e) => {
@@ -64,9 +72,10 @@ function Home() {
     setSearchBrand(e.target.value);
     setBrandactiveButton(e.target.value);
   };
+  const closePopup = () => {
+    setShowPopup(false);
 
-
-
+  };
   return (
     <div className={darkMode ? 'dark-mode' : ''}> {/* Apply dark mode class */}
       <NavigationBar />
@@ -130,6 +139,14 @@ function Home() {
         </div>
       </div>
       <Footer />
+      {showPopup && (
+        <Popup open={true} position="right center" onClose={closePopup}>
+          <div className="popup-content">
+            added
+            <Checkmark size='128px' />
+          </div>
+        </Popup>
+      )}
     </div>
   );
 }
