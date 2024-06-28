@@ -64,8 +64,6 @@ class AdsProductsSerializer(serializers.ModelSerializer):
                         'price':product.price,
                         'id': product.id,
                         'description':product.description
-                        
-                        
                     }
 
     class Meta:
@@ -93,8 +91,6 @@ class OrderSerializer(serializers.ModelSerializer):
                         'price':product.price,
                         'id': product.id,
                         'description':product.description
-
-                        
                     }
         else:
             return {}

@@ -76,6 +76,8 @@ function Cart() {
       response=>{
           setIsSubmited(true)
           setShowPopup(true)
+        
+          
          
             
           
@@ -138,7 +140,7 @@ function Cart() {
           <h3>address: {address}</h3>
           <h3>price: {price} EGP</h3>
           <h3>quantity: {number}</h3>
-
+          
           
           
           </div>:   <div className="popup-content">

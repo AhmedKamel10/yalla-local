@@ -6,6 +6,8 @@ import Footer from '../components/footer';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Checkmark } from 'react-checkmark'
+import ReactLoading from 'react-loading';
+
 
 function Home() {
   const [data, setData] = useState([]);
@@ -17,8 +19,10 @@ function Home() {
   const [darkMode, setDarkMode] = useState(false); 
   const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
+
     const fetchData = async () => {
       try {
+        
         const res = await api.get("/api/products/");
         const products = res.data.filter(product => 
           product.name.toLowerCase().includes(search.toLowerCase()) &&
@@ -76,6 +80,7 @@ function Home() {
     setShowPopup(false);
 
   };
+
   return (
     <div className={darkMode ? 'dark-mode' : ''}> {/* Apply dark mode class */}
       <NavigationBar />
@@ -140,6 +145,7 @@ function Home() {
       </div>
       <Footer />
       {showPopup && (
+        
         <Popup open={true} position="right center" onClose={closePopup}>
           <div className="popup-content">
             added

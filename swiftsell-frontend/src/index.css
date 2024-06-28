@@ -250,12 +250,27 @@ button:hover {
   margin: 0 auto;
   padding: 20px;
 }
+.loader {
+  margin: auto;
+  background-color: white;  
+  margin-top: 300px;
+  border: 20px solid #EAF0F6;
+  border-radius: 50%;
+  border-top: 20px solid #000000;
+  width: 200px;
+  height: 200px;
+  
+ 
+  
+}
 
 .img2{
   width: 450px;
   overflow-y: hidden;
 }
-
+.loading{
+  position: relative; left: 35%; top: 35%;
+}
 .product-images {
   flex: 1;
 }
