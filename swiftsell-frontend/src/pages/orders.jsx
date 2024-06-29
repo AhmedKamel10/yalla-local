@@ -12,7 +12,6 @@ function Orders() {
         api.get('/api/orders/')
             .then(response => {
                 setData(response.data);
-                console.log(response.data);
             })
             .catch(error => console.log(error.response ? error.response.data : error.message));
             

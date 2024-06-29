@@ -22,7 +22,6 @@ const ProductForm = () => {
                 photo,
                 description
             });
-            console.log(response.data);
             addtoads(response.data.id);
             navigate("/all");
         } catch (error) {
@@ -33,7 +32,6 @@ const ProductForm = () => {
     const addtoads = async (productID) => {
         try {
             const res = await api.post('/api/ads_products/add_to_ads/', { products: productID });
-            console.log(res);
         } catch (error) {
             console.error(error);
         }
@@ -44,7 +42,6 @@ const ProductForm = () => {
             try {
                 const res = await api.get("/api/brand_account/");
                 setN(res.data.length);
-                console.log(n)
             } catch (error) {
                 console.error(error);
             }

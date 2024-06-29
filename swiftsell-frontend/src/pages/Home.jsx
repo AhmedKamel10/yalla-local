@@ -25,8 +25,10 @@ function Home() {
         
         const res = await api.get("/api/products/");
         const products = res.data.filter(product => 
-          product.name.toLowerCase().includes(search.toLowerCase()) &&
-          product.seller.toLowerCase().includes(searchBrand.toLowerCase())
+          product.seller.toLowerCase().includes(searchBrand.toLowerCase()) &&
+          (product.name.toLowerCase().includes(search.toLowerCase()) ||
+           product.description.toLowerCase().includes(search.toLowerCase()))
+          
         );
         const res2 = await api.get("api/get_brands/");
         setBrand(res2.data);

@@ -31,7 +31,7 @@ function Cart() {
           }
         });
         setCartitem(response.data);
-        console.log(response.data);
+
 
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -70,8 +70,7 @@ function Cart() {
   };
 
   const handleSubmit = () => {
-    console.log("Input 1:", name);
-    console.log("Input 2:", address);
+
     api.post('/api/orders/add_to_orders/', { 'product': selectedProduct, 'name': name, 'address': address, 'number': number }).then(
       response=>{
           setIsSubmited(true)
@@ -147,12 +146,13 @@ function Cart() {
             <div>
           
               <label>
-                Username:
+                Name:
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="popup-input"
+                  placeholder='enter your full name'
                 />
               </label>
             </div>
