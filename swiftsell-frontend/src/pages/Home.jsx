@@ -86,6 +86,7 @@ function Home() {
   return (
     <div className={darkMode ? 'dark-mode' : ''}> {/* Apply dark mode class */}
       <NavigationBar />
+   
       <div className="container-fluid">
         <div className="row">
           <nav className="col-md-2 d-none d-md-block bg-light sidebar">
@@ -127,7 +128,7 @@ function Home() {
               />
               <button value={""} onClick={handleClick} className={`filter ${activeButton === "" ? 'active' : ''}`}>all</button>
               <button value={"one piece"} onClick={handleClick} className={`filter ${activeButton === "one piece" ? 'active' : ''}`}>one piece</button>
-              <button value={"white"} onClick={handleClick} className={`filter ${activeButton === "white" ? 'active' : ''}`}>white</button>
+              <button value={"سكرو"} onClick={handleClick} className={`filter ${activeButton === "سكرو" ? 'active' : ''}`}>سكرو</button>
               <button value={"black"} onClick={handleClick} className={`filter ${activeButton === "black" ? 'active' : ''}`}>black</button>
               <button value={"ford"} onClick={handleClick} className={`filter ${activeButton === "ford" ? 'active' : ''}`}>ford</button>
               <button value={"song"} onClick={handleClick} className={`filter ${activeButton === "song" ? 'active' : ''}`}>songs</button>
