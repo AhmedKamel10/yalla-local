@@ -11,7 +11,7 @@ function ProductPage(){
     const fetchdata = () => {
         api
                    .get("/api/products/")
-                   .then((res) => res.data)
+                   .then((res) => res.data.results)
                    .then((data) => {
                        setData(data);
                    })

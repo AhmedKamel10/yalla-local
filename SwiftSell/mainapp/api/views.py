@@ -14,7 +14,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
 from django.db.models.functions import Lower
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 3
+    page_size = 6
     page_size_query_param = 'page_size'
     max_page_size = 2
     

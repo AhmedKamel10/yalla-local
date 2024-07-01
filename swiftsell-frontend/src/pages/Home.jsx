@@ -154,7 +154,7 @@ catch{
           </div>
         ) : (
           <div className="banner-carousel">
-            <Slider {...settings}>
+            <Slider>
               <div>
                 <img
                   className="banner-img"
