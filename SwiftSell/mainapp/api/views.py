@@ -11,10 +11,20 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
+from rest_framework.pagination import PageNumberPagination
+from django.db.models.functions import Lower
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 2
+    
 class PostViewSet(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by(Lower("id").desc())
     serializer_class= PostSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+    
+
     def perform_create(self, serializer):
         user = User.objects.get(pk=self.request.user.id)
         serializer.save(seller=user)
@@ -28,6 +38,9 @@ class get_brands(generics.ListCreateAPIView):
     serializer_class = BrandsSerializer
     permission_classes = [IsAuthenticated]
     queryset = brand_account.objects.all()
+    def get_serializer_context(self):
+        return {'request': self.request}
+
 class createUserView(generics.CreateAPIView):
     queryset  = User.objects.all()
     serializer_class= UserSerializer

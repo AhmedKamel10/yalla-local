@@ -30,7 +30,7 @@ function Cart() {
             Authorization: `Bearer ${accessToken}`
           }
         });
-        setCartitem(response.data);
+        setCartitem(response.data.results);
 
 
       } catch (error) {
@@ -43,7 +43,7 @@ function Cart() {
         .get("/api/products/")
         .then((res) => res.data)
         .then((data) => {
-          setData(data);
+          setData(data.results);
         })
         .catch((err) => alert(err));
     }
@@ -93,7 +93,7 @@ function Cart() {
       <div className="cart-item">
         <div>
           <Link to={`/product/${p.products.id}`}>
-            <img className='img3' src={p.products.photo} alt={p.products.name} />
+            <img className='img3' src={`http://localhost:8000${p.products.photo}`} alt={p.products.name} />
           </Link>
         </div>
         <div className="cart-details">

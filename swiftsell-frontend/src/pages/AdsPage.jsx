@@ -23,8 +23,7 @@ function Ads(){
                 }
                 
               });
-              console.log(response.data)
-              setData(response.data)
+              setData(response.data.results)
     
             } catch (error) {
               console.error('Error fetching cart items:', error);
@@ -46,7 +45,7 @@ function AdstItemInfo({p}){
 
       
       <div>
-      <div> <Link to={`/product/${p.products.id}`}> <img className='img3' src={p.products.photo} ></img></Link></div>
+      <div> <Link to={`/product/${p.products.id}`}> <img className='img3' src={`http://localhost:8000${p.products.photo}`} ></img></Link></div>
       </div>
       <div>
       <div>{p.products.name}</div>

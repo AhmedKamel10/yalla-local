@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path ,include
 from mainapp.api.views import createUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshSlidingView
+from django.conf import settings
+from django.conf.urls.static import static
 from mainapp.api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +39,8 @@ urlpatterns = [
     path('api/get_brands/' , views.get_brands.as_view(), name="get_brands"),
     path('api/orders/', views.orders.as_view({'get':'list'})),
     path('api/orders/add_to_orders/', views.orders.as_view({'post': 'add_to_orders'}), name="add-to-orders"),
-    path('api/orders/delete_from_orders/', views.orders.as_view({'post': 'delete_from_orders'}), name='delete_from_orders')
-
+    path('api/orders/delete_from_orders/', views.orders.as_view({'post': 'delete_from_orders'}), name='delete_from_orders'),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

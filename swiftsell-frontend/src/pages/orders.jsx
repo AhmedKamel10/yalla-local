@@ -11,7 +11,7 @@ function Orders() {
     useEffect(() => {
         api.get('/api/orders/')
             .then(response => {
-                setData(response.data);
+                setData(response.data.results);
             })
             .catch(error => console.log(error.response ? error.response.data : error.message));
             
